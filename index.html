@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="<!-- figma:lang -->">
+  <head>
+    <!-- figma:head-start -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><!-- figma:title --></title>
+    <!-- figma:head-end -->
+  </head>
+  <body>
+    <script>
+      ;(function () {
+        var params = new URLSearchParams(location.search)
+        var route = params.get("route")
+        if (!route) return
+        var base = location.pathname.indexOf("/smartfarm/") === 0
+          ? "/smartfarm/"
+          : "/"
+        history.replaceState(null, "", base + route)
+      })()
+    </script>
+    <!-- figma:body-start -->
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <!-- figma:body-end -->
+
+    <!-- 업데이트 스타일 -->
+    <style>
+      .hero-arrow:hover{ /* hero 좌,우 이동 버튼 */
+        background: #DCE8A8;
+      }
+      .arrow-button:hover{ /* hero arrow 버튼 */
+        background: #14501F;
+        color: #fff;
+      }
+      .policy-links a:hover{ /* 푸터 메뉴 오버 시 */
+        color: #0E8F5A;
+      }
+      .socials button:hover{ /* 푸터 sns 오버 시 */
+        background: #DCE8A8;
+        cursor: pointer;
+      }
+      .quick-menu a:hover{ /* 고정 퀵메뉴 오버 시 */
+        background: #DCE8A8;
+      }
+    </style>
+    
+  </body>
+</html>
