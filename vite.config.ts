@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite"
 import fs from "node:fs"
 import path from "node:path"
 
-import siteConfiguration from "./.figma/make/site.json"
+const siteConfiguration = {}
 
 // Vite config — https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -12,15 +12,11 @@ export default defineConfig(({ mode }) => {
   const emitSourcemaps = mode === "development"
 
   return {
-    // GitHub Pages 프로젝트 사이트는 저장소 경로를 포함해야 합니다.
-    // 로컬 개발은 "/"를 사용하고, GitHub Actions 빌드에서는 "/smartfarm/"를 사용합니다.
-    base: process.env.VITE_BASE_PATH
-      ? process.env.VITE_BASE_PATH
-      : process.env.GITHUB_ACTIONS
-        ? "/smartfarm/"
-        : process.env.FIGMA_PUBLIC_URL
-          ? `${process.env.FIGMA_PUBLIC_URL}/`
-          : "/",
+    base: process.env.GITHUB_ACTIONS
+      ? "/smartfarm/"
+      : process.env.FIGMA_PUBLIC_URL
+        ? `${process.env.FIGMA_PUBLIC_URL}/`
+        : "/",
     build: {
       sourcemap: emitSourcemaps ? "inline" : false,
       minify: !emitSourcemaps,
