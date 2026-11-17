@@ -12,11 +12,15 @@ export default defineConfig(({ mode }) => {
   const emitSourcemaps = mode === "development"
 
   return {
-    base: process.env.GITHUB_ACTIONS
-      ? "/smartfarm/"
-      : process.env.FIGMA_PUBLIC_URL
-        ? `${process.env.FIGMA_PUBLIC_URL}/`
-        : "/",
+    // GitHub Pages 프로젝트 사이트는 저장소 경로를 포함해야 합니다.
+    // 로컬 개발은 "/"를 사용하고, GitHub Actions 빌드에서는 "/smartfarm/"를 사용합니다.
+    base: process.env.VITE_BASE_PATH
+      ? process.env.VITE_BASE_PATH
+      : process.env.GITHUB_ACTIONS
+        ? "/smartfarm/"
+        : process.env.FIGMA_PUBLIC_URL
+          ? `${process.env.FIGMA_PUBLIC_URL}/`
+          : "/",
     build: {
       sourcemap: emitSourcemaps ? "inline" : false,
       minify: !emitSourcemaps,
