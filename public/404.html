@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>스마트팜</title>
+    <script>
+      ;(function () {
+        var base = "/smartfarm/"
+        var path = location.pathname.indexOf(base) === 0
+          ? location.pathname.slice(base.length)
+          : location.pathname.slice(1)
+        location.replace(
+          location.origin +
+            base +
+            "?route=" +
+            encodeURIComponent(path + location.search + location.hash),
+        )
+      })()
+    </script>
+  </head>
+  <body></body>
+</html>
